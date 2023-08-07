@@ -6,7 +6,7 @@
 
     <body>
         <?php
-        echo "Exercicio 08";
+        echo "Exercicio 01";
         echo "<BR><BR>";
 
         echo "1- Termine o script abaixo, imprimindo todos os números entre \$numero1 e \$numero2.";
