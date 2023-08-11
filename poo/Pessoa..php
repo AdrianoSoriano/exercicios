@@ -1,4 +1,4 @@
-<?
+<?php
 class Pessoa {
     //Atributos
     public string $nome;
@@ -24,3 +24,4 @@ class Pessoa {
         $this->peso = $peso;
     }
 }
+?>
