@@ -3,9 +3,35 @@ class Pessoa {
     
     public string $nome;
     public int $idade;
-    public string $sexo;
+    private string $corDosOlhos;
+    private string $genero;
     public float $altura;
     public float $peso;
+
+
+    function __construct($nome, $idade, $corDosOlhos, $genero, $altura, $peso) {
+        $this->nome = $nome;
+        $this->idade = $idade;
+        if($idade > 0 and $idade < 120){
+            $this->idade = $idade;
+        } else {
+            throw new Exception("Idade não permitida");
+        }
+        $this->corDosOlhos = $corDosOlhos;
+        if ($corDosOlhos == "Azul" || $corDosOlhos == "Castanho" || $corDosOlhos == "Verde" || $corDosOlhos == "Preto") {
+            $this->corDosOlhos = $corDosOlhos;
+        } else {
+            throw new Exception("A cor dos olhos deve ser Azul, Castanho, Verde ou Preto.");
+        }
+        $this->genero = $genero;
+        if ($genero == "Masculino" || $genero == "Feminino") {
+            $this->genero = $genero;
+        } else {
+            throw new Exception("O gênero deve ser Masculino ou Feminino.");
+        }
+        $this->altura = $altura;
+        $this->peso = $peso;
+    }
 
     public function setNome(string $nome): void 
     {
@@ -26,15 +52,14 @@ class Pessoa {
     {
         return $this->idade;    
     }
-
-    public function setSexo(string $sexo): void 
+    public function getcorDosOlhos(): string
     {
-        $this->sexo = $sexo;
+        return $this->corDosOlhos;    
     }
-    
-    public function getSexo(): string
+
+     public function getGenero(): string
     {
-        return $this->sexo;    
+        return $this->genero;    
     }
 
     public function setAltura(float $altura): void 
