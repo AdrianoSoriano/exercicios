@@ -1,36 +1,21 @@
 <?php
 class Pessoa {
     
-    public string $nome;
-    public int $idade;
+    private string $nome;
+    private int $idade;
     private string $corDosOlhos;
     private string $genero;
-    public float $altura;
-    public float $peso;
+    private float $altura;
+    private float $peso;
 
 
-    function __construct($nome, $idade, $corDosOlhos, $genero, $altura, $peso) {
+    public function __construct($nome, $idade, $corDosOlhos, $genero, $altura, $peso) {
         $this->nome = $nome;
-        $this->idade = $idade;
-        if($idade > 0 and $idade < 120){
-            $this->idade = $idade;
-        } else {
-            throw new Exception("Idade não permitida");
-        }
-        $this->corDosOlhos = $corDosOlhos;
-        if ($corDosOlhos == "Azul" || $corDosOlhos == "Castanho" || $corDosOlhos == "Verde" || $corDosOlhos == "Preto") {
-            $this->corDosOlhos = $corDosOlhos;
-        } else {
-            throw new Exception("A cor dos olhos deve ser Azul, Castanho, Verde ou Preto.");
-        }
-        $this->genero = $genero;
-        if ($genero == "Masculino" || $genero == "Feminino") {
-            $this->genero = $genero;
-        } else {
-            throw new Exception("O gênero deve ser Masculino ou Feminino.");
-        }
-        $this->altura = $altura;
-        $this->peso = $peso;
+        $this->setIdade($idade);
+        $this->setcorDosOlhos($corDosOlhos);
+        $this->setgenero($genero);
+        $this->setAltura($altura);
+        $this->setPeso($peso);
     }
 
     public function setNome(string $nome): void 
@@ -43,8 +28,13 @@ class Pessoa {
         return $this->nome;    
     }
 
-    public function setIdade(int $idade): void 
+    private function setIdade(int $idade): void 
     {
+        if(($idade < 0) || ($idade > 100)){
+            echo "Idade não permitida";
+            exit();
+        }
+
         $this->idade = $idade;
     }
     
@@ -52,18 +42,48 @@ class Pessoa {
     {
         return $this->idade;    
     }
-    public function getcorDosOlhos(): string
+
+    private function setCorDosOlhos(string $corDosOlhos): void
+    {
+        $opcao = ["Azul", "Castanho", "Verde", "Preto"];
+
+        if(in_array($corDosOlhos, $opcao)) {
+            $this->corDosOlhos = $corDosOlhos;
+            return;
+        }
+        echo "A cor dos olhos deve ser Azul, Castanho, Verde ou Preto.";
+            exit();
+    }
+
+    public function getCorDosOlhos(): string
     {
         return $this->corDosOlhos;    
     }
 
-     public function getGenero(): string
+    private function setGenero(string $genero): void
+    {
+        $opcao = ["Masculino", "Feminino"];
+
+        if(in_array($genero, $opcao)){
+            $this->genero = $genero;
+            return;
+        }
+        echo "O gênero deve ser Masculino ou Feminino.";
+            exit();
+    }
+
+    public function getGenero(): string
     {
         return $this->genero;    
     }
 
-    public function setAltura(float $altura): void 
+    private function setAltura(float $altura): void 
     {
+        if(($altura < 0) || ($altura >2.10)){
+            echo "Altura não permitida";
+            exit();
+        }
+
         $this->altura = $altura;
     }
     
@@ -72,8 +92,13 @@ class Pessoa {
         return $this->altura;    
     }
 
-    public function setPeso(float $peso): void 
+    private function setPeso(float $peso): void 
     {
+        if($peso < 0){
+            echo "Peso não permitida";
+            exit();
+        }
+
         $this->peso = $peso;
     }
     
