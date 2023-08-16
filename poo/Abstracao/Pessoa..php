@@ -8,7 +8,7 @@ class Pessoa {
     private float $altura;
     private float $peso;
 
-
+    /*
     public function __construct($nome, $idade, $corDosOlhos, $genero, $altura, $peso) {
         $this->nome = $nome;
         $this->setIdade($idade);
@@ -16,6 +16,12 @@ class Pessoa {
         $this->setgenero($genero);
         $this->setAltura($altura);
         $this->setPeso($peso);
+    }*/
+
+    public function __construct($nome, $corDosOlhos, $genero) {
+        $this->nome = $nome;
+        $this->setcorDosOlhos($corDosOlhos);
+        $this->setgenero($genero);
     }
 
     public function setNome(string $nome): void 
@@ -28,7 +34,7 @@ class Pessoa {
         return $this->nome;    
     }
 
-    private function setIdade(int $idade): void 
+    public function setIdade(int $idade): self
     {
         if(($idade < 0) || ($idade > 100)){
             echo "Idade não permitida";
@@ -36,6 +42,7 @@ class Pessoa {
         }
 
         $this->idade = $idade;
+        return $this;
     }
     
     public function getIdade(): int
@@ -77,7 +84,7 @@ class Pessoa {
         return $this->genero;    
     }
 
-    private function setAltura(float $altura): void 
+    public function setAltura(float $altura): self
     {
         if(($altura < 0) || ($altura >2.10)){
             echo "Altura não permitida";
@@ -85,6 +92,7 @@ class Pessoa {
         }
 
         $this->altura = $altura;
+        return $this;
     }
     
     public function getAltura(): float
@@ -92,7 +100,7 @@ class Pessoa {
         return $this->altura;    
     }
 
-    private function setPeso(float $peso): void 
+    public function setPeso(float $peso): self 
     {
         if($peso < 0){
             echo "Peso não permitida";
@@ -100,6 +108,7 @@ class Pessoa {
         }
 
         $this->peso = $peso;
+        return $this;
     }
     
     public function getPeso(): float
